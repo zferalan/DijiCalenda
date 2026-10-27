@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gerçekçi Estetik Ajanda</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="menu-toggle" aria-label="Menüyü aç">☰</button>
+    <div class="karartma" id="karartma"></div>
+
+    <div class="kenar-menusu" id="sidebar">
+        <h2>Çalışma Masam</h2>
+        <button id="btn-anasayfa" class="menu-btn">🏠 Masama Dön</button>
+        <div class="menu-baslik">Defterlerim</div>
+        <div id="dinamik-defter-menusu"></div>
+        <button id="btn-yeni-defter-sidebar" class="menu-btn yeni">➕ Yeni Defter Ekle</button>
+        <div class="tema-secim-alani">
+            <button id="btn-tema">🌙 Gece Modu</button>
+        </div>
+    </div>
+
+    <div class="ana-ekran" id="ana-icerik"></div>
+
+    <div id="kisisellestirme-cekmece" class="cekmece">
+        <div class="cekmece-baslik">
+            <h3 id="cekmece-baslik-metni">Yeni Defter Oluştur</h3>
+            <button id="btn-cekmece-kapat" class="kapat-btn">✕</button>
+        </div>
+        <div class="cekmece-icerik">
+            <div class="cekmece-form">
+                <div class="ayar-grubu">
+                    <label>Defter Adı</label>
+                    <input type="text" id="defter-adi-input" class="form-girdi" maxlength="40" placeholder="Örn: 2027 Hedeflerim">
+                </div>
+                <div class="ayar-grubu">
+                    <label>Defter Türü</label>
+                    <select id="defter-turu-input" class="form-girdi">
+                        <option value="gunluk">📅 Günlük Ajanda</option>
+                        <option value="haftalik">📆 Haftalık Ajanda</option>
+                        <option value="aylik">🗓️ Aylık Ajanda</option>
+                        <option value="diary">📖 Sevgili Günlük</option>
+                        <option value="todo">📋 To-Do List</option>
+                        <option value="not">📝 Not Defteri</option>
+                    </select>
+                </div>
+                <!-- YENİ: Şifre Grubu -->
+                <div class="ayar-grubu">
+                    <label>Şifre Kilidi (İsteğe Bağlı)</label>
+                    <input type="text" id="defter-sifre-input" class="form-girdi" maxlength="4" placeholder="Örn: 1234 (Boş bırakılırsa kilitsiz olur)">
+                </div>
+                <div class="ayar-grubu">
+                    <label>Kapak Rengi</label>
+                    <div class="renk-paleti" id="renk-paleti"></div>
+                </div>
+                <div class="ayar-grubu">
+                    <label>Desen</label>
+                    <div class="desen-secenekleri">
+                        <div class="desen-kutu desen-duz aktif" data-desen="desen-duz">Düz</div>
+                        <div class="desen-kutu desen-ekose" data-desen="desen-ekose">Ekose</div>
+                        <div class="desen-kutu desen-puantiye" data-desen="desen-puantiye">Puantiye</div>
+                        <div class="desen-kutu desen-zebra" data-desen="desen-zebra">Zebra</div>
+                        <div class="desen-kutu desen-leopar" data-desen="desen-leopar">Leopar</div>
+                        <div class="desen-kutu desen-damali" data-desen="desen-damali">Damalı</div>
+                        <div class="desen-kutu desen-dantel" data-desen="desen-dantel">Dantel</div>
+                        <div class="desen-kutu desen-cicekli" data-desen="desen-cicekli">Çiçekli</div>
+                        <div class="desen-kutu desen-terrazzo" data-desen="desen-terrazzo">Benekli</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cekmece-onizleme">
+                <label>Önizleme</label>
+                <div id="defter-onizleme" class="masadaki-defter onizleme-defter desen-duz">
+                    <div class="kapak-etiket"><h3></h3><span></span></div>
+                </div>
+                <button id="btn-defter-kaydet" class="kaydet-btn">Masaya Koy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- YENİ: Şifre Sorma Ekranı (Modal) -->
+    <div id="pin-modal" class="kaplama" style="display:none; z-index: 100;">
+        <div class="kutu" style="text-align:center; max-width: 300px;">
+            <h3 style="font-size: 20px;">Defter Kilitli 🔒</h3>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Bu defteri açmak için şifreyi girin.</p>
+            <input type="password" id="pin-giris" class="form-girdi" maxlength="4" style="text-align:center; font-size:24px; letter-spacing:10px; width:150px; margin:0 auto; display:block;">
+            <div class="kutu-butonlar" style="justify-content:center; margin-top:25px;">
+                <button class="iptal" onclick="document.getElementById('pin-modal').style.display='none'">Masa Dön</button>
+                <button class="tamam" id="btn-pin-onayla">Kilidi Aç</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
